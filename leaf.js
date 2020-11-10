@@ -1,6 +1,38 @@
 //i for test funksjonen
 var i = 0;
+
+//getData takes john hopkins data
+function drawCircle(lat,long,infectionRate, region){
+  var circle = L.circle([lat,long], {
+    color: 'red',
+    fillColor: 'f03',
+    fillOpacity: '0.5',
+    radius: infectionRate/4
+  })
+
+  circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
+  circle.addTo(mymap);
+};
+
+//drawCircleAlt takes twitter data 
+function drawCircleAlt(lat,long){
+  var circle = L.circle([lat,long], {
+    color: 'purple',
+    fillColor: 'f03',
+    fillOpacity: '0.5',
+    radius: 1
+  })
+  //circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
+  circle.addTo(mymap);
+};
+
+function reloadPage(){
+  location.reload();
+};
+
+
 /*
+//inferior functions used in earlier stages of the project. 
 function drawCircle(lat, long, infectionRate){
    if(lat == null && long == null && infectionRate == null){ 
     console.log('empty input')
@@ -29,19 +61,6 @@ function drawCircle(lat, long, infectionRate){
       }
   }  
 
-  */
-
-function drawCircle(lat,long,infectionRate, region){
-  var circle = L.circle([lat,long], {
-    color: 'red',
-    fillColor: 'f03',
-    fillOpacity: '0.5',
-    radius: infectionRate/4
-  })
-
-  circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
-  circle.addTo(mymap);
-};
 
 //Test funksjon 
 function writingCircles(){
@@ -65,3 +84,4 @@ function writingCircles(){
     i++;
   }
 }
+*/

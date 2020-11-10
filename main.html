@@ -43,14 +43,13 @@
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mymap);
       
-      //var dingdata = getData();
-      //writingCircles(dingdata)
-      getData();
-      
+      //getData();
+      //getDataAlt();
       
     </script>
 
-    <button onclick=writingCircles()>click me to draw a circle</button>
-
+    <button onclick=getData()>Click to show confirmed active Corona cases</button>
+    <button onclick=getDataAlt()>Click to show covid-19 tweet activity</button>
+    <button onclick=reloadPage()>Click to reset map</button>
   </body>
 </html>
