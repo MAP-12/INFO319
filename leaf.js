@@ -31,13 +31,16 @@ function drawCircle(lat, long, infectionRate){
 
   */
 
-function drawCircle(lat,long,infectionRate){
+function drawCircle(lat,long,infectionRate, region){
   var circle = L.circle([lat,long], {
     color: 'red',
     fillColor: 'f03',
     fillOpacity: '0.5',
     radius: infectionRate/4
-  }).addTo(mymap);
+  })
+
+  circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
+  circle.addTo(mymap);
 };
 
 //Test funksjon 

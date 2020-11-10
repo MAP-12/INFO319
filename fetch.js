@@ -3,8 +3,8 @@
 
 async function getData(){
 
-    const response = await fetch('./test-clean.csv',{headers: {
-      'Access-Control-Allow-Origin': 'test-clean.csv'
+    const response = await fetch('./info_extended.csv',{headers: {
+      'Access-Control-Allow-Origin': 'info_extended.csv'
     }});
     const data = await response.text();
     //console.log(data);
@@ -15,9 +15,14 @@ async function getData(){
       const lat = row[0];
       const long = row[1];
       const infectionRate = row[2];
+      const region = row[3];
 
       //setTimeout(drawCircle(lat,long,infectionRate), 100);
-      drawCircle(lat,long,infectionRate);
+      try{
+      drawCircle(lat,long,infectionRate, region);
+      } catch{
+        console.log('failed')
+      }
     });
     
     return data;
