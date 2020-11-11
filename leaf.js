@@ -1,7 +1,4 @@
-//i for test funksjonen
-var i = 0;
-
-//getData takes john hopkins data
+//getData draws the John Hopkins covid-19 data
 function drawCircle(lat,long,infectionRate, region){
   var circle = L.circle([lat,long], {
     color: 'red',
@@ -10,11 +7,13 @@ function drawCircle(lat,long,infectionRate, region){
     radius: infectionRate/4
   })
 
+  //Adds a popup to show the region and confirmed active cases
   circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
   circle.addTo(mymap);
 };
 
-//drawCircleAlt takes twitter data 
+//drawCircleAlt draws the twitter data. 
+//it is a seperate function cause it requires less parameters
 function drawCircleAlt(lat,long){
   var circle = L.circle([lat,long], {
     color: 'purple',
@@ -22,66 +21,11 @@ function drawCircleAlt(lat,long){
     fillOpacity: '0.5',
     radius: 1
   })
-  //circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
+
   circle.addTo(mymap);
 };
 
+//function to clear the map by reloading it
 function reloadPage(){
   location.reload();
 };
-
-
-/*
-//inferior functions used in earlier stages of the project. 
-function drawCircle(lat, long, infectionRate){
-   if(lat == null && long == null && infectionRate == null){ 
-    console.log('empty input')
-  }
-
-  if(infectionRate == 0){
-      console.log('Empty');
-  }else if(infectionRate <= 500){
-      var circle = L.circle([lat,long], {
-      color: 'orange',
-      fillColor: 'f03',
-      fillOpacity: 0.5, 
-      radius: 1000}).addTo(mymap);
-  }else if(infectionRate <= 1000){  
-      var circle = L.circle([lat,long], {
-      color: 'red',
-      fillColor: 'f03',
-      fillOpacity: 0.5, 
-      radius: 5000}).addTo(mymap);
-  }else{
-      var circle = L.circle([lat,long], {
-      color: 'red',
-      fillColor: 'f03',
-      fillOpacity: 0.5, 
-      radius: 10000}).addTo(mymap);
-      }
-  }  
-
-
-//Test funksjon 
-function writingCircles(){
-  if(i==0){
-    setTimeout(drawCircle(55,12,499),500);
-    i++;
-  }else if(i==1){
-    setTimeout(drawCircle(21.9,-159.4,1000), 1000);            
-    i++;
-  }else if(i==2){
-    setTimeout(drawCircle( 34.6, -81.9, 1000), 1500);
-    i++;
-  }else if(i==3){
-    setTimeout(drawCircle(35, -4, 2000), 2000);            
-    i++;
-  }else if(i==4){
-    setTimeout(drawCircle(30 -6, 2000), 2500);
-    i++;
-  }else if(i==5){
-    setTimeout(drawCircle(38, 9, 5000), 3000);
-    i++;
-  }
-}
-*/

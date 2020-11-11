@@ -1,13 +1,15 @@
 // To fetch local files privacy.file_unique_origin needs to be turned to false
 // in mozilla firefox about:config
 
+//Variables for changing dates
 var confirmed = "./useddata/confirmed_24mar.csv";
 var confirmedAcc = "confirmed_24mar.csv";
 var twitter = "./useddata/march_tweets_gps.csv";
 var twitterAcc = "march_tweets_gps.csv";
 var activeDate = "24. of March";
 
-async function changeDate(date){
+//Changes datasets and metainfo based on input
+function changeDate(date){
 
   if(date == 0){
    
@@ -36,14 +38,13 @@ async function changeDate(date){
   }
 };
 
-
+//Gets the data from the confirmed John Hopkins datasets and calls the draw function
 async function getConfData(confFile, confAcc){
 
     const response = await fetch(confFile ,{headers: {
       'Access-Control-Allow-Origin': confAcc
     }});
     const data = await response.text();
-    //console.log(data);
 
     const rows = data.split(/\n/);
     rows.forEach(elt =>{
@@ -53,7 +54,6 @@ async function getConfData(confFile, confAcc){
       const infectionRate = row[2];
       const region = row[3];
 
-      //setTimeout(drawCircle(lat,long,infectionRate), 100);
       try{
       drawCircle(lat,long,infectionRate, region);
       } catch{
@@ -65,13 +65,13 @@ async function getConfData(confFile, confAcc){
     
   }
 
+//Gets the twitter data and calls the draw function
 async function getTweetData(tweetFile, tweetAcc){
 
     const response = await fetch(tweetFile,{headers: {
       'Access-Control-Allow-Origin': tweetAcc
     }});
     const data = await response.text();
-    //console.log(data);
 
     const rows = data.split(/\n/);
     rows.forEach(elt =>{
@@ -79,7 +79,6 @@ async function getTweetData(tweetFile, tweetAcc){
       const lat = row[0];
       const long = row[1];
      
-      //setTimeout(drawCircle(lat,long,infectionRate), 100);
       try{
       drawCircleAlt(lat,long);
       } catch{

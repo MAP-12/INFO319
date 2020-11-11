@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head window.onload>
+  <head>
     <meta charset="utf-8">
-    <title>INFO319</title>
+    <title></title>
     
+    <!-- Importing CSS for leaflet.js-->
     <link
       rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin=""
     />
 
+    <!--Importing leaflet.js library-->
     <script
       src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
 
+    <!--functions for drawing on the leaflet.js map-->
     <script type="text/javascript" src="leaf.js"
     ></script>
 
+    <!--functions for getting and manually parsing the datset-->
     <script type="text/javascript" src="fetch.js"
     ></script>
 
     <style>
 
+      /*The map needs a set height variable to be visible 
+      since the default height of the map is 0*/
       #covidMap {
         height: 800px;
       }
@@ -43,21 +49,21 @@
     <div id="covidMap"></div>
 
     <script>
+
+      //Initializes the map 
       const mymap = L.map('covidMap').setView([0, 0], 2);
 
+      //Sets copyright information on map
       const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
       const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mymap);
-      
-      //getData();
-      //getDataAlt();
       
     </script>
     
     <button onclick=getConfData(confirmed,confirmedAcc)>Click to show confirmed active Corona cases</button>
     <button onclick=getTweetData(twitter,twitterAcc)>Click to show covid-19 tweet activity</button>
     <button onclick=reloadPage()>Click to reset map</button>
-    
+
   </body>
 </html>
