@@ -38,6 +38,26 @@ function changeDate(date){
   }
 };
 
+//Changes the color of the dots signaling active covid cases. More cases = it gets more red
+function colorGradient(infectionRate){
+  var colorGrad = null; 
+
+  if(infectionRate<=2000){
+    colorGrad = '#fef001'
+  }else if(infectionRate<=4000){
+    colorGrad = '#ffce03'
+  }else if(infectionRate<=8000){
+    colorGrad = '#fd9a01'
+  }else if(infectionRate<=16000){
+    colorGrad = '#fd6104'
+  }else if(infectionRate<=32000){
+    colorGrad = '#ff2c05'
+  }else{
+    colorGrad = '#f00505'
+  }
+  return colorGrad;
+};
+
 //Gets the data from the confirmed John Hopkins datasets and calls the draw function
 async function getConfData(confFile, confAcc){
 
@@ -48,14 +68,15 @@ async function getConfData(confFile, confAcc){
 
     const rows = data.split(/\n/);
     rows.forEach(elt =>{
-      const row = elt.split(',');
+      const row = elt.split(/,/);
       const lat = row[0];
       const long = row[1];
       const infectionRate = row[2];
       const region = row[3];
+      const colorGrad = colorGradient(infectionRate);
 
       try{
-      drawCircle(lat,long,infectionRate, region);
+      drawCircle(lat,long,infectionRate, region, colorGrad);
       } catch{
         console.log('failed')
       }
@@ -75,7 +96,7 @@ async function getTweetData(tweetFile, tweetAcc){
 
     const rows = data.split(/\n/);
     rows.forEach(elt =>{
-      const row = elt.split(',');
+      const row = elt.split(/,/);
       const lat = row[0];
       const long = row[1];
      
