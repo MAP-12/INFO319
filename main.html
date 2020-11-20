@@ -26,25 +26,21 @@
     <script type="text/javascript" src="fetch.js"
     ></script>
 
-    <style>
-
-      /*The map needs a set height variable to be visible 
-      since the default height of the map is 0*/
-      #covidMap {
-        height: 800px;
-      }
-      
-    </style>
+    <link rel="stylesheet" href="covid.css">
 
 </head>
 
-  <body>
-    <h2>Covid-19 confirmed active cases and twitter activity map</h2>
+  <body class='bod'>
+
+    <h2 id='headline'>Covid-19 confirmed active cases and twitter activity map</h2>
     <h3 id='metainfo'>Active date: 24. of March | Red dots: Active cases | Purple dots: Geotagged tweets about covid-19</h3>
 
-    <button onclick=changeDate(0)>24. of March</button>
-    <button onclick=changeDate(1)>08. of July</button>
-    <button onclick=changeDate(2)>15. of October</button>
+    <div class='topbtn-group'>
+      <button onclick=changeDate(0)>24. of March</button>
+      <button onclick=changeDate(1)>08. of July</button>
+      <button onclick=changeDate(2)>15. of October</button>
+    </div> 
+
 
     <div id="covidMap"></div>
 
@@ -61,10 +57,11 @@
       tiles.addTo(mymap);
       
     </script>
-    
-    <button onclick=getConfData(confirmed,confirmedAcc)>Click to show confirmed active Corona cases</button>
-    <button onclick=getTweetData(twitter,twitterAcc)>Click to show covid-19 tweet activity</button>
-    <button onclick=reloadPage()>Click to reset map</button>
 
+    <div class="botbtn-group">
+      <button onclick=getConfData(confirmed,confirmedAcc)>Click to show confirmed active Corona cases</button>
+      <button onclick=getTweetData(twitter,twitterAcc)>Click to show covid-19 tweet activity</button>
+      <button onclick=reloadPage()>Click to reset map</button>
+    </div>
   </body>
 </html>

@@ -55,6 +55,7 @@ function colorGradient(infectionRate){
   }else{
     colorGrad = '#f00505'
   }
+  
   return colorGrad;
 };
 
@@ -81,9 +82,8 @@ async function getConfData(confFile, confAcc){
         console.log('failed')
       }
     });
-    
-    return data;
-    
+
+    return data; 
   }
 
 //Gets the twitter data and calls the draw function
