@@ -12,29 +12,23 @@ var activeDate = "24. of March";
 function changeDate(date){
 
   if(date == 0){
-   
     document.getElementById('metainfo').innerHTML = "Active date: 24. of March | Red dots: Active cases | Purple dots: Geotagged tweets about covid-19"
     confirmed = "./useddata/confirmed_24mar.csv"; 
     confirmedAcc = "confirmed_24mar.csv";
     twitter = "./useddata/march_tweets_gps.csv";
     twitterAcc = "march_tweets_gps.csv";
-
   } else if(date == 1){
-
     document.getElementById('metainfo').innerHTML = "Active date: 08. of July | Red dots: Active cases | Purple dots: Geotagged tweets about covid-19"
     confirmed = "./useddata/confirmed_08jul.csv"; 
     confirmedAcc = "confirmed_08jul.csv";
     twitter = "./useddata/july_tweets_gps.csv";
     twitterAcc = "july_tweets_gps.csv";
-
   } else if(date == 2){
-
     document.getElementById('metainfo').innerHTML = "Active date: 15. of October | Red dots: Active cases | Purple dots: Geotagged tweets about covid-19"
     confirmed = "./useddata/confirmed_15oct.csv"; 
     confirmedAcc = "confirmed_15oct.csv";
     twitter = "./useddata/october_tweets_gps.csv";
     twitterAcc = "october_tweets_gps.csv";
-
   }
 };
 
@@ -55,19 +49,17 @@ function colorGradient(infectionRate){
   }else{
     colorGrad = '#f00505'
   }
-  
   return colorGrad;
 };
 
 //Gets the data from the confirmed John Hopkins datasets and calls the draw function
 async function getConfData(confFile, confAcc){
-
     const response = await fetch(confFile ,{headers: {
       'Access-Control-Allow-Origin': confAcc
     }});
     const data = await response.text();
-
     const rows = data.split(/\n/);
+
     rows.forEach(elt =>{
       const row = elt.split(/,/);
       const lat = row[0];
@@ -77,24 +69,26 @@ async function getConfData(confFile, confAcc){
       const colorGrad = colorGradient(infectionRate);
 
       try{
-      drawCircle(lat,long,infectionRate, region, colorGrad);
+      if(infectionRate < 1 || infectionRate == null){
+        console.log(region + " " + "has 0 cases");
+      }else{
+        drawCircle(lat,long,infectionRate, region, colorGrad);
+        };
       } catch{
         console.log('failed')
       }
     });
-
     return data; 
   }
 
 //Gets the twitter data and calls the draw function
 async function getTweetData(tweetFile, tweetAcc){
-
     const response = await fetch(tweetFile,{headers: {
       'Access-Control-Allow-Origin': tweetAcc
     }});
     const data = await response.text();
-
     const rows = data.split(/\n/);
+    
     rows.forEach(elt =>{
       const row = elt.split(/,/);
       const lat = row[0];
@@ -105,8 +99,6 @@ async function getTweetData(tweetFile, tweetAcc){
       } catch{
         console.log('failed')
       }
-    });
-    
+    }); 
     return data;
-    
   }
