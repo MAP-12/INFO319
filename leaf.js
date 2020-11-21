@@ -1,10 +1,10 @@
 //getData draws the John Hopkins covid-19 data
-function drawCircle(lat,long,infectionRate, region){
+function drawCircle(lat,long,infectionRate, region, colorGrad){
   var circle = L.circle([lat,long], {
-    color: 'red',
-    fillColor: 'f03',
+    color: colorGrad,
+    fillColor: colorGrad,
     fillOpacity: '0.5',
-    radius: infectionRate/4
+    radius: infectionRate/3
   })
 
   //Adds a popup to show the region and confirmed active cases
@@ -16,7 +16,7 @@ function drawCircle(lat,long,infectionRate, region){
 //it is a seperate function cause it requires less parameters
 function drawCircleAlt(lat,long){
   var circle = L.circle([lat,long], {
-    color: 'purple',
+    color: 'blue',
     fillColor: 'f03',
     fillOpacity: '0.5',
     radius: 1
