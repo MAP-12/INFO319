@@ -1,15 +1,15 @@
 //getData draws the John Hopkins covid-19 data
 function drawCircle(lat,long,infectionRate, region, colorGrad){
-  var circle = L.circle([lat,long], {
-    color: colorGrad,
-    fillColor: colorGrad,
-    fillOpacity: '0.5',
-    radius: infectionRate/3
-  })
+    var circle = L.circle([lat,long], {
+      color: colorGrad,
+      fillColor: colorGrad,
+      fillOpacity: '0.5',
+      radius: infectionRate/3
+    })
 
-  //Adds a popup to show the region and confirmed active cases
-  circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
-  circle.addTo(mymap);
+    //Adds a popup to show the region and confirmed active cases
+    circle.bindPopup('Region: ' + '"' + region + '"' + ' Infection rate: ' + Math.floor(infectionRate));
+    circle.addTo(mymap);
 };
 
 //drawCircleAlt draws the twitter data. 
@@ -21,7 +21,7 @@ function drawCircleAlt(lat,long){
     fillOpacity: '0.5',
     radius: 1
   })
-
+  
   circle.addTo(mymap);
 };
 

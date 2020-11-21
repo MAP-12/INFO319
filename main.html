@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="covid.css">
 
 </head>
-
   <body class='bod'>
 
     <h2 id='headline'>Covid-19 confirmed active cases and twitter activity map</h2>
@@ -45,7 +44,6 @@
     <div id="covidMap"></div>
 
     <script>
-
       //Initializes the map 
       const mymap = L.map('covidMap').setView([0, 0], 2);
 
@@ -55,7 +53,6 @@
       const tileUrl = ' 	https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png'
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mymap);
-      
     </script>
 
     <div class="botbtn-group">
